@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" role="img" aria-labelledby="title desc">
+  <title id="title">JC hand-drawn logo</title>
+  <desc id="desc">A black hand-drawn monogram of the letters J and C.</desc>
+  <g fill="none" stroke="#111" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M98 18 C72 32 48 64 36 94" />
+    <path d="M98 18 L93 98" />
+    <path d="M36 94 C56 108 80 108 95 98" />
+    <path d="M38 96 C30 110 30 124 38 136" />
+    <path d="M18 124 C34 158 74 170 126 170 C166 170 196 160 210 118" />
+    <path d="M132 18 C110 40 100 82 104 108 C108 142 132 156 164 152" />
+    <path d="M205 18 C178 14 150 30 132 68" />
+    <path d="M192 76 C184 96 170 100 156 96 C146 93 142 84 144 72" />
+    <path d="M204 76 C208 104 208 128 200 148" />
+    <path d="M94 98 C90 126 96 146 116 160" />
+  </g>
+</svg>
