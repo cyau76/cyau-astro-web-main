@@ -1,0 +1,52 @@
+---
+import BaseHead from '../../../components/BaseHead.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import { SITE_TITLE } from '../../../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`2026 Spring Diffusions MTP Tech Team Availability Form | ${SITE_TITLE}`}
+			description="Embedded availability form for the 2026 Spring Diffusions MTP Tech Team."
+		/>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>2026 Spring Diffusions MTP Tech Team Availability Form</h1>
+			<p>Please complete the form below. If the embed does not load, use the direct link.</p>
+			<p>
+				<a href="https://forms.gle/Q6gAqogNw5quewJe9" target="_blank" rel="noopener noreferrer">Open form in a new tab</a>
+			</p>
+			<div class="form-wrap">
+				<iframe
+					src="https://forms.gle/Q6gAqogNw5quewJe9"
+					title="2026 Spring Diffusions MTP Tech Team Availability Form"
+					loading="lazy"
+				></iframe>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.form-wrap {
+		width: 100%;
+		min-height: 1200px;
+		border: 1px solid var(--border-color);
+		border-radius: 0.75rem;
+		overflow: hidden;
+		background: var(--surface-color);
+	}
+
+	iframe {
+		display: block;
+		width: 100%;
+		height: 1200px;
+		border: 0;
+	}
+</style>

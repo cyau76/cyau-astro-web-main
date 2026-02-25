@@ -1,0 +1,70 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Contect | ${SITE_TITLE}`} description="Send a message through the contect form." />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Contect</h1>
+			<p>Use this form to send me a message. Submissions are sent to <strong>cyau@cyau76.com</strong>.</p>
+
+			<form action="https://formsubmit.co/cyau@cyau76.com" method="POST" class="contect-form">
+				<input type="hidden" name="_subject" value="New message from cyau76 contect form" />
+				<input type="hidden" name="_captcha" value="false" />
+				<input type="hidden" name="_template" value="table" />
+
+				<label for="name">Name</label>
+				<input id="name" name="name" type="text" required />
+
+				<label for="email">Email</label>
+				<input id="email" name="email" type="email" required />
+
+				<label for="message">Message</label>
+				<textarea id="message" name="message" rows="6" required></textarea>
+
+				<button type="submit">Send Message</button>
+			</form>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.contect-form {
+		display: grid;
+		gap: 0.75rem;
+		max-width: 42rem;
+	}
+
+	.contect-form input,
+	.contect-form textarea {
+		font: inherit;
+		padding: 0.65rem 0.75rem;
+		border: 1px solid var(--border-color);
+		border-radius: 0.5rem;
+		background: var(--surface-color);
+	}
+
+	.contect-form button {
+		justify-self: start;
+		font: inherit;
+		background: var(--accent);
+		color: #fff;
+		border: none;
+		padding: 0.7rem 1rem;
+		border-radius: 0.5rem;
+		cursor: pointer;
+	}
+
+	.contect-form button:hover {
+		opacity: 0.9;
+	}
+</style>

@@ -1,0 +1,95 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+
+const videos = [
+	{
+		title: 'Featured Work 1',
+		url: 'https://youtu.be/OuF2bRWwb-8',
+		embed: 'https://www.youtube.com/embed/OuF2bRWwb-8',
+		description: 'YouTube preview of one of my featured projects.',
+	},
+	{
+		title: 'Featured Work 2',
+		url: 'https://youtu.be/egHX0e9Azlo',
+		embed: 'https://www.youtube.com/embed/egHX0e9Azlo',
+		description: 'Another project video showing my workflow and results.',
+	},
+	{
+		title: 'Featured Work 3',
+		url: 'https://youtu.be/qTavTXJHfdU',
+		embed: 'https://www.youtube.com/embed/qTavTXJHfdU',
+		description: 'A third video preview from my recent work.',
+	},
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Works | ${SITE_TITLE}`} description="Selected works and YouTube video previews." />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Works</h1>
+			<p>Here are some of my YouTube videos with previews.</p>
+
+			<div class="projects-grid">
+				{videos.map((video) => (
+					<article class="project-card">
+						<h2>{video.title}</h2>
+						<p>{video.description}</p>
+						<div class="video-wrap">
+							<iframe
+								src={video.embed}
+								title={video.title}
+								loading="lazy"
+								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+								allowfullscreen
+							></iframe>
+						</div>
+						<p><a href={video.url} target="_blank" rel="noopener noreferrer">Watch on YouTube</a></p>
+					</article>
+				))}
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.projects-grid {
+		display: grid;
+		gap: 1.5rem;
+	}
+
+	.project-card {
+		padding: 1rem;
+		border: 1px solid var(--border-color);
+		border-radius: 0.75rem;
+		background: var(--surface-color);
+	}
+
+	.project-card h2 {
+		margin-top: 0;
+	}
+
+	.video-wrap {
+		position: relative;
+		padding-top: 56.25%;
+		border-radius: 0.5rem;
+		overflow: hidden;
+		background: #000;
+	}
+
+	.video-wrap iframe {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		border: 0;
+	}
+</style>
