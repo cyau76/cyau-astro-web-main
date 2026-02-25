@@ -1,0 +1,24 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Current Work | ${SITE_TITLE}`} description="Current project work and subpages." />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Current Work</h1>
+			<p>Explore current projects and active collaboration pages.</p>
+			<ul>
+				<li><a href="/current-work/26-spring-diffusions">26 Spring Diffusions</a></li>
+			</ul>
+		</main>
+		<Footer />
+	</body>
+</html>
