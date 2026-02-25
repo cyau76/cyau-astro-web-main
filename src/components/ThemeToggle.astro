@@ -1,0 +1,47 @@
+<button id="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+	<span class="theme-toggle-icon" aria-hidden="true">🌙</span>
+</button>
+
+<script is:inline>
+	const button = document.getElementById('theme-toggle');
+	const root = document.documentElement;
+	const icon = button?.querySelector('.theme-toggle-icon');
+
+	const updateIcon = () => {
+		const isDark = root.classList.contains('dark') || (!root.classList.contains('light') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+		if (icon) icon.textContent = isDark ? '☀️' : '🌙';
+	};
+
+	button?.addEventListener('click', () => {
+		const isDark = root.classList.contains('dark') || (!root.classList.contains('light') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+		if (isDark) {
+			root.classList.remove('dark');
+			root.classList.add('light');
+			localStorage.setItem('theme', 'light');
+		} else {
+			root.classList.add('dark');
+			root.classList.remove('light');
+			localStorage.setItem('theme', 'dark');
+		}
+		updateIcon();
+	});
+
+	updateIcon();
+</script>
+
+<style>
+	#theme-toggle {
+		font: inherit;
+		line-height: 1;
+		padding: 0.5rem;
+		border-radius: 0.5rem;
+		border: 1px solid var(--border-color);
+		background: var(--surface-color);
+		color: var(--text-color);
+		cursor: pointer;
+	}
+
+	#theme-toggle:hover {
+		border-color: var(--accent);
+	}
+</style>
