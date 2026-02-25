@@ -14,6 +14,17 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 ---
 
+<script is:inline>
+	const storedTheme = localStorage.getItem('theme');
+	if (storedTheme === 'dark') {
+		document.documentElement.classList.add('dark');
+		document.documentElement.classList.remove('light');
+	} else if (storedTheme === 'light') {
+		document.documentElement.classList.add('light');
+		document.documentElement.classList.remove('dark');
+	}
+</script>
+
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
