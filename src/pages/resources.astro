@@ -1,0 +1,45 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const songTitle = 'sea&land';
+const artist = 'RubberBand';
+const musicUrl = 'https://music.youtube.com/watch?v=Z4LUxwG8B9s';
+const wavPath = '/audio/sea-land-rubberband.wav';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="Resources" description="Helpful links and audio resources" />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Resources</h1>
+			<section>
+				<h2>Featured Song</h2>
+				<p>
+					<strong>{songTitle}</strong> by {artist}
+				</p>
+				<p>
+					<a href={musicUrl} target="_blank" rel="noopener noreferrer">Open on YouTube Music</a>
+				</p>
+			</section>
+
+			<section>
+				<h2>WAV Track</h2>
+				<p>Preview file: <code>public/audio/sea-land-rubberband.wav</code></p>
+				<p>
+					Place your WAV file in that exact path to enable playback on this page.
+				</p>
+				<audio controls preload="none">
+					<source src={wavPath} type="audio/wav" />
+					Your browser does not support WAV playback.
+				</audio>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
