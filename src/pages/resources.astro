@@ -3,10 +3,38 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
-const songTitle = 'sea&land';
-const artist = 'RubberBand';
-const musicUrl = 'https://music.youtube.com/watch?v=Z4LUxwG8B9s';
-const wavPath = '/audio/sea-land-rubberband.wav';
+const songs = [
+	{
+		title: 'sea&land',
+		artist: 'RubberBand',
+		musicUrl: 'https://music.youtube.com/watch?v=Z4LUxwG8B9s',
+		mp3Path: '/audio/sea-land-RubberBand.mp3',
+	},
+	{
+		title: 'Track 1',
+		artist: 'Unknown',
+		musicUrl: 'https://music.youtube.com/watch?v=kOeu1QhrCZg',
+		mp3Path: '/audio/kOeu1QhrCZg.mp3',
+	},
+	{
+		title: 'Track 2',
+		artist: 'Unknown',
+		musicUrl: 'https://music.youtube.com/watch?v=CZKQPpS3NCk',
+		mp3Path: '/audio/CZKQPpS3NCk.mp3',
+	},
+	{
+		title: 'Track 3',
+		artist: 'Unknown',
+		musicUrl: 'https://music.youtube.com/watch?v=Q9elzD6YLAY',
+		mp3Path: '/audio/Q9elzD6YLAY.mp3',
+	},
+	{
+		title: 'Track 4',
+		artist: 'Unknown',
+		musicUrl: 'https://music.youtube.com/watch?v=U5XgLP6OFcU',
+		mp3Path: '/audio/U5XgLP6OFcU.mp3',
+	},
+];
 ---
 
 <!doctype html>
@@ -18,26 +46,26 @@ const wavPath = '/audio/sea-land-rubberband.wav';
 		<Header />
 		<main>
 			<h1>Resources</h1>
-			<section>
-				<h2>Featured Song</h2>
-				<p>
-					<strong>{songTitle}</strong> by {artist}
-				</p>
-				<p>
-					<a href={musicUrl} target="_blank" rel="noopener noreferrer">Open on YouTube Music</a>
-				</p>
-			</section>
 
 			<section>
-				<h2>WAV Track</h2>
-				<p>Preview file: <code>public/audio/sea-land-rubberband.wav</code></p>
-				<p>
-					Place your WAV file in that exact path to enable playback on this page.
-				</p>
-				<audio controls preload="none">
-					<source src={wavPath} type="audio/wav" />
-					Your browser does not support WAV playback.
-				</audio>
+				<h2>Songs</h2>
+				{songs.map((song) => (
+					<article>
+						<p>
+							<strong>{song.title}</strong> by {song.artist}
+						</p>
+						<p>
+							<a href={song.musicUrl} target="_blank" rel="noopener noreferrer">Open on YouTube Music</a>
+						</p>
+						<audio controls preload="none">
+							<source src={song.mp3Path} type="audio/mpeg" />
+							Your browser does not support MP3 playback.
+						</audio>
+						<p>
+							<a href={song.mp3Path} download>Download MP3</a>
+						</p>
+					</article>
+				))}
 			</section>
 		</main>
 		<Footer />
