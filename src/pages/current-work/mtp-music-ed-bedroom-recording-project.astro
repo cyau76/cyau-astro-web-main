@@ -30,7 +30,7 @@ const hasCloudLink = cloudLink.startsWith('http');
 				<h2>Mixed File (MP3)</h2>
 				
 				{hasMixedFile && (
-					<audio controls preload="none" src={/audio/bedroom-rec-proj-cyau.mp3}>
+					<audio controls preload="none" src={mixedFilePath}>
 						Your browser does not support the audio element.
 					</audio>
 				)}
@@ -39,7 +39,7 @@ const hasCloudLink = cloudLink.startsWith('http');
 			<section>
 				<h2>Cloud Link</h2>
 				
-				{hasCloudLink && <p><a href={https://oregonstateuniversity-my.sharepoint.com/:f:/g/personal/auc_oregonstate_edu/IgDaUtxZ2wTqR5ze2rpcSrr4ATHtn7Fm_Lxt8LSK6g750pc?e=3ZCzzi}>Open cloud link</a></p>}
+				{hasCloudLink && <p><a href={cloudLink}>Open cloud link</a></p>}
 				
 			</section>
 		</main>
