@@ -4,8 +4,8 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { SITE_TITLE } from '../../consts';
 
-const mixedFilePath = '[Add mixed mp3 path in repo, e.g. /audio/mtp-bedroom-project-mix-v1.mp3]';
-const cloudLink = '[Add cloud link, e.g. https://drive.google.com/... ]';
+const mixedFilePath = '/audio/bedroom-rec-proj-cyau.mp3';
+const cloudLink = 'https://drive.google.com';
 const hasMixedFile = mixedFilePath.endsWith('.mp3');
 const hasCloudLink = cloudLink.startsWith('http');
 ---
@@ -15,7 +15,7 @@ const hasCloudLink = cloudLink.startsWith('http');
 	<head>
 		<BaseHead
 			title={`MTP & Music Ed Bedroom Recording Project | ${SITE_TITLE}`}
-			description="Project placeholders for mixed mp3 file and cloud link, editable via GitHub."
+			description="The following is a playable mp3 file and a link to onedrive (you must use OSU email)"
 		/>
 	</head>
 	<body>
@@ -23,21 +23,14 @@ const hasCloudLink = cloudLink.startsWith('http');
 		<main>
 			<h1>MTP &amp; Music Ed Bedroom Recording Project</h1>
 			<p>
-				This page uses editable placeholders so you can update project links directly in GitHub.
+				The following is a playable mp3 file and a link to onedrive (you must use OSU email)
 			</p>
 
 			<section>
-				<h2>Mixed File (MP3 in repo)</h2>
-				<p>
-					Current placeholder:
-					<code>{mixedFilePath}</code>
-				</p>
-				<p>
-					After you upload an MP3 file into <code>public/audio/</code>, replace the placeholder above
-					with its public path.
-				</p>
+				<h2>Mixed File (MP3)</h2>
+				
 				{hasMixedFile && (
-					<audio controls preload="none" src={mixedFilePath}>
+					<audio controls preload="none" src={/audio/bedroom-rec-proj-cyau.mp3}>
 						Your browser does not support the audio element.
 					</audio>
 				)}
@@ -45,9 +38,9 @@ const hasCloudLink = cloudLink.startsWith('http');
 
 			<section>
 				<h2>Cloud Link</h2>
-				<p>Current placeholder: <code>{cloudLink}</code></p>
-				{hasCloudLink && <p><a href={cloudLink}>Open cloud link</a></p>}
-				<p>Replace the placeholder with your Google Drive, Dropbox, or other cloud URL.</p>
+				
+				{hasCloudLink && <p><a href={https://oregonstateuniversity-my.sharepoint.com/:f:/g/personal/auc_oregonstate_edu/IgDaUtxZ2wTqR5ze2rpcSrr4ATHtn7Fm_Lxt8LSK6g750pc?e=3ZCzzi}>Open cloud link</a></p>}
+				
 			</section>
 		</main>
 		<Footer />
