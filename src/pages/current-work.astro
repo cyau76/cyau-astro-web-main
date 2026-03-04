@@ -3,6 +3,30 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE } from '../consts';
+
+const workItems = [
+	{
+		title: '26 Spring Diffusions',
+		href: '/current-work/26-spring-diffusions',
+		description: 'Active planning hub for production notes and team resources.',
+		subpages: [
+			{
+				title: '2026 Spring Diffusions MTP Tech Team Availability Form',
+				href: '/current-work/26-spring-diffusions/2026-spring-diffusions-mtp-tech-team-availability-form',
+			},
+			{
+				title: '26 Spring Diffusions Input List Q&A',
+				href: '/current-work/26-spring-diffusions/26-spring-diffusions-input-list-q-and-a',
+			},
+		],
+	},
+	{
+		title: 'MTP & Music Ed Bedroom Recording Project',
+		href: '/current-work/mtp-music-ed-bedroom-recording-project',
+		description: 'Current collaboration updates and project progress.',
+		subpages: [],
+	},
+];
 ---
 
 <!doctype html>
@@ -15,29 +39,131 @@ import { SITE_TITLE } from '../consts';
 		<main>
 			<h1>Current Work</h1>
 			<p>Explore current projects and active collaboration pages.</p>
-			<ul>
-				<li>
-					<a href="/current-work/26-spring-diffusions">26 Spring Diffusions</a>
-					<ul>
-						<li>
-							<a href="/current-work/26-spring-diffusions/2026-spring-diffusions-mtp-tech-team-availability-form"
-								>2026 Spring Diffusions MTP Tech Team Availability Form</a
-							>
-						</li>
-						<li>
-							<a href="/current-work/26-spring-diffusions/26-spring-diffusions-input-list-q-and-a">
-								26 spring diffusions input list-Q&amp;A
-							</a>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a href="/current-work/mtp-music-ed-bedroom-recording-project"
-						>MTP &amp; Music Ed Bedroom Recording Project</a
-					>
-				</li>
-			</ul>
+			<section class="work-grid">
+				{workItems.map((item) => (
+					<article class="work-card">
+						<h2>
+							<a href={item.href} class="work-link">{item.title}</a>
+						</h2>
+						<p>{item.description}</p>
+						{item.subpages.length > 0 && (
+							<div>
+								<h3>Subpages</h3>
+								<ul class="subpage-list">
+									{item.subpages.map((subpage) => (
+										<li>
+											<a href={subpage.href} class="subpage-link">{subpage.title}</a>
+										</li>
+									))}
+								</ul>
+							</div>
+						)}
+					</article>
+				))}
+			</section>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style>
+	.work-grid {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		margin-top: 1rem;
+	}
+
+	.work-card {
+		border: 1px solid var(--border-color);
+		border-radius: 0.85rem;
+		padding: 1rem;
+		background: var(--surface-color);
+		box-shadow: 0 3px 10px rgba(var(--black), 0.08);
+	}
+
+	.work-card h2 {
+		margin-top: 0;
+		margin-bottom: 0.35rem;
+	}
+
+	.work-link {
+		display: inline-block;
+		text-decoration: none;
+		background: var(--accent);
+		color: var(--accent-contrast);
+		padding: 0.45rem 0.75rem;
+		border-radius: 0.5rem;
+		font-weight: 700;
+		line-height: 1.35;
+		transition: transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+	}
+
+	.work-link:hover {
+		background: var(--accent-dark);
+		transform: translateY(-1px);
+		box-shadow: 0 5px 14px rgba(var(--black), 0.2);
+	}
+
+	.subpage-list {
+		list-style: none;
+		padding: 0;
+		margin: 0.75rem 0 0;
+		display: grid;
+		gap: 0.5rem;
+	}
+
+	.subpage-link {
+		display: block;
+		text-decoration: none;
+		color: var(--heading-color);
+		padding: 0.55rem 0.75rem;
+		border: 1px solid var(--border-color);
+		border-radius: 0.5rem;
+		background: color-mix(in srgb, var(--surface-color) 92%, var(--accent) 8%);
+		transition: transform 120ms ease, border-color 120ms ease, background-color 120ms ease;
+	}
+
+	.subpage-link:hover {
+		border-color: var(--accent);
+		background: color-mix(in srgb, var(--surface-color) 84%, var(--accent) 16%);
+		transform: translateY(-1px);
+	}
+
+	.work-link:focus-visible,
+	.subpage-link:focus-visible {
+		outline: 3px solid color-mix(in srgb, var(--accent) 60%, white 40%);
+		outline-offset: 2px;
+	}
+
+	.work-card h3 {
+		margin-bottom: 0.4rem;
+		font-size: 1rem;
+	}
+
+	:root.dark .work-card {
+		box-shadow: 0 6px 20px rgba(0, 0, 0, 0.32);
+	}
+
+	:root.dark .subpage-link {
+		background: color-mix(in srgb, var(--surface-color) 88%, var(--accent) 12%);
+	}
+
+	:root.dark .subpage-link:hover {
+		background: color-mix(in srgb, var(--surface-color) 80%, var(--accent) 20%);
+	}
+
+	@media (prefers-color-scheme: dark) {
+		:root:not(.light) .work-card {
+			box-shadow: 0 6px 20px rgba(0, 0, 0, 0.32);
+		}
+
+		:root:not(.light) .subpage-link {
+			background: color-mix(in srgb, var(--surface-color) 88%, var(--accent) 12%);
+		}
+
+		:root:not(.light) .subpage-link:hover {
+			background: color-mix(in srgb, var(--surface-color) 80%, var(--accent) 20%);
+		}
+	}
+</style>
