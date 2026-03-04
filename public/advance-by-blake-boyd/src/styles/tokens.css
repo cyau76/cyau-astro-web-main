@@ -1,0 +1,54 @@
+/* ==========================================================================
+   Advance Design Tokens
+   Scoped to .advc-app so they override site variables within the app
+   without leaking to the page chrome. Always dark — no theme switching.
+   ========================================================================== */
+
+.advc-app {
+  /* Surfaces */
+  --advc-bg: #0f1117;
+  --advc-surface: #1a1d27;
+  --advc-surface-header: #22262f;
+  --advc-surface-inset: #0a0c12;
+  --advc-surface-raised: #2a2e3a;
+
+  /* Borders */
+  --advc-border: rgba(255, 255, 255, 0.06);
+  --advc-border-strong: rgba(255, 255, 255, 0.12);
+  --advc-border-focus: rgba(59, 130, 246, 0.4);
+
+  /* Text */
+  --advc-text: #f3f4f6;
+  --advc-text-secondary: #9ca3af;
+  --advc-text-tertiary: #6b7280;
+
+  /* Accent */
+  --advc-accent: #3b82f6;
+  --advc-accent-hover: #2563eb;
+  --advc-success: #22c55e;
+  --advc-warning: #f59e0b;
+  --advc-error: #ef4444;
+
+  /* Tool type colors */
+  --advc-color-patch: #3b82f6;
+  --advc-color-stage: #8b5cf6;
+  --advc-color-ros: #f59e0b;
+
+  /* Shadows */
+  --advc-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --advc-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --advc-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+
+  /* Sizing */
+  --advc-radius: 8px;
+  --advc-radius-sm: 6px;
+  --advc-radius-xs: 4px;
+
+  /* Typography */
+  --advc-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --advc-mono: 'SF Mono', 'Fira Code', monospace;
+
+  /* Transitions */
+  --advc-transition-fast: 0.12s ease;
+  --advc-transition-normal: 0.2s ease;
+}

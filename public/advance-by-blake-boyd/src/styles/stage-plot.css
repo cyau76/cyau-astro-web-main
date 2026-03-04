@@ -1,0 +1,281 @@
+/* ==========================================================================
+   Stage Plot Designer Styles
+   ========================================================================== */
+
+.advc-stage-editor {
+  display: flex;
+  gap: 16px;
+  min-height: 500px;
+}
+
+.advc-stage-canvas-area {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.advc-stage-canvas {
+  position: relative;
+  background: var(--advc-surface-inset);
+  border: 2px solid var(--advc-border-strong);
+  border-radius: var(--advc-radius-sm);
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+.advc-stage-canvas__label {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--advc-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.advc-stage-element {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: move;
+  user-select: none;
+  border: 2px solid transparent;
+  border-radius: var(--advc-radius-xs);
+  transition: border-color var(--advc-transition-fast);
+}
+
+.advc-stage-element:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.advc-stage-element--selected {
+  border-color: var(--advc-accent) !important;
+}
+
+.advc-stage-element__icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.advc-stage-element__label {
+  font-size: 0.65rem;
+  color: var(--advc-text);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  margin-top: 2px;
+}
+
+.advc-stage-element__resize {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--advc-accent);
+  border-radius: 2px;
+  cursor: nwse-resize;
+}
+
+.advc-stage-element__resize--se {
+  bottom: -4px;
+  right: -4px;
+}
+
+/* Right panel */
+.advc-stage-panel {
+  width: 240px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.advc-stage-panel__section {
+  background: var(--advc-surface);
+  border: 1px solid var(--advc-border);
+  border-radius: var(--advc-radius-sm);
+  padding: 12px;
+}
+
+.advc-stage-panel__title {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--advc-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 10px;
+}
+
+/* Element palette */
+.advc-palette {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.advc-palette__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 4px;
+  background: var(--advc-surface-inset);
+  border: 1px solid var(--advc-border);
+  border-radius: var(--advc-radius-xs);
+  cursor: pointer;
+  transition: background var(--advc-transition-fast), border-color var(--advc-transition-fast);
+}
+
+.advc-palette__item:hover {
+  background: var(--advc-surface-raised);
+  border-color: var(--advc-border-strong);
+}
+
+.advc-palette__item-icon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.advc-palette__item-name {
+  font-size: 0.6rem;
+  color: var(--advc-text-tertiary);
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Properties panel */
+.advc-props {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.advc-props__row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.advc-props__label {
+  font-size: 0.7rem;
+  color: var(--advc-text-secondary);
+  min-width: 50px;
+}
+
+.advc-props__input {
+  flex: 1;
+  padding: 4px 6px;
+  border: 1px solid var(--advc-border);
+  border-radius: var(--advc-radius-xs);
+  background: var(--advc-surface-inset);
+  color: var(--advc-text);
+  font-size: 0.8rem;
+  font-family: var(--advc-font);
+  outline: none;
+}
+
+.advc-props__input:focus {
+  border-color: var(--advc-border-focus);
+}
+
+/* Stage size selector */
+.advc-stage-size {
+  display: flex;
+  gap: 8px;
+}
+
+.advc-stage-size__select {
+  flex: 1;
+  padding: 4px 6px;
+  border: 1px solid var(--advc-border);
+  border-radius: var(--advc-radius-xs);
+  background: var(--advc-surface-inset);
+  color: var(--advc-text);
+  font-size: 0.8rem;
+  font-family: var(--advc-font);
+  outline: none;
+  cursor: pointer;
+}
+
+/* Background upload */
+.advc-bg-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.advc-bg-upload__drop {
+  padding: 16px;
+  border: 1px dashed var(--advc-border-strong);
+  border-radius: var(--advc-radius-xs);
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--advc-text-tertiary);
+  cursor: pointer;
+}
+
+.advc-bg-upload__drop:hover {
+  border-color: var(--advc-accent);
+}
+
+/* Grid overlay when snap is enabled */
+.advc-stage-canvas--grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 10px 10px;
+}
+
+/* Snap toggle */
+.advc-stage-size__snap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: var(--advc-text-secondary);
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+}
+
+.advc-stage-size__snap input {
+  accent-color: var(--advc-accent);
+}
+
+/* Responsive: scroll when canvas overflows */
+.advc-stage-canvas-area {
+  overflow-x: auto;
+}
+
+@media print {
+  .advc-stage-panel {
+    display: none !important;
+  }
+
+  .advc-stage-canvas {
+    border-color: #999;
+    background: #fff !important;
+    background-image: none !important;
+  }
+
+  .advc-stage-canvas__label {
+    color: #666;
+  }
+
+  .advc-stage-element__label {
+    color: #000;
+  }
+
+  .advc-stage-element {
+    border-color: transparent !important;
+  }
+}
