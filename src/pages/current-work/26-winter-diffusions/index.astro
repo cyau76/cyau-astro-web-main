@@ -1,0 +1,33 @@
+---
+import BaseHead from '../../../components/BaseHead.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import { SITE_TITLE } from '../../../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`26 Winter Diffusions | ${SITE_TITLE}`} description="Subpage for 26 Winter Diffusions." />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>26 Winter Diffusions</h1>
+			<p>This section contains project resources for 26 Winter Diffusions.</p>
+			<ul>
+				<li>
+					<a href="/current-work/26-winter-diffusions/2026-winter-diffusions-mtp-tech-team-availability-form">
+						2026 Winter Diffusions MTP Tech Team Availability Form
+					</a>
+				</li>
+				<li>
+					<a href="/current-work/26-winter-diffusions/26-winter-diffusions-input-list-q-and-a">
+						26 winter diffusions input list-Q&amp;A
+					</a>
+				</li>
+			</ul>
+		</main>
+		<Footer />
+	</body>
+</html>
