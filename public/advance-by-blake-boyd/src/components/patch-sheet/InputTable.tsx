@@ -62,7 +62,7 @@ export function InputTable() {
           <thead>
             <tr>
               <th style={{ width: 28 }} />
-              <th style={{ width: 40 }}>#</th>
+              <th style={{ width: 72 }}>#</th>
               <th>Name</th>
               <th style={{ width: 100 }}>Mic Type</th>
               <th>Device</th>
