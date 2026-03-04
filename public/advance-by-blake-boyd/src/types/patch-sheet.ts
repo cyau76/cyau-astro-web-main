@@ -3,6 +3,8 @@ export interface PatchSheetMetadata {
   date: string;
   fohEngineer: string;
   monitorEngineer: string;
+  additionalPosition: string;
+  additionalName: string;
   notes: string;
 }
 

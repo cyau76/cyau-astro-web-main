@@ -42,6 +42,25 @@ export function PatchSheetMetadata() {
           placeholder="Name"
         />
       </div>
+
+      <div className="advc-metadata__field">
+        <label className="advc-metadata__label">Additional Position</label>
+        <input
+          className="advc-metadata__input"
+          value={metadata.additionalPosition}
+          onChange={(e) => setMetadata({ additionalPosition: e.target.value })}
+          placeholder="e.g. Broadcast Engineer"
+        />
+      </div>
+      <div className="advc-metadata__field">
+        <label className="advc-metadata__label">Additional Name</label>
+        <input
+          className="advc-metadata__input"
+          value={metadata.additionalName}
+          onChange={(e) => setMetadata({ additionalName: e.target.value })}
+          placeholder="Name"
+        />
+      </div>
       <div className="advc-metadata__field advc-metadata__notes">
         <label className="advc-metadata__label">Notes</label>
         <textarea
