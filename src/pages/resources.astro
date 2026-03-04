@@ -28,13 +28,13 @@ const resourceLinks = [
 		<Header />
 		<main>
 			<h1>Resources</h1>
-			<section style="display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-top: 1rem;">
+			<section class="resource-grid">
 				{resourceLinks.map((item) => (
-					<article style="border: 1px solid #d0d7de; border-radius: 12px; padding: 1rem; background: #f8fafc; box-shadow: 0 3px 10px rgba(0,0,0,0.06);">
-						<h2 style="margin-top: 0;">{item.title}</h2>
+					<article class="resource-card">
+						<h2>{item.title}</h2>
 						<p>{item.description}</p>
 						<p>
-							<a href={item.href} style="display: inline-block; background: #2563eb; color: #fff; text-decoration: none; padding: 0.55rem 0.85rem; border-radius: 8px; font-weight: 600;">
+							<a href={item.href} class="resource-cta">
 								{item.cta}
 							</a>
 						</p>
@@ -45,3 +45,38 @@ const resourceLinks = [
 		<Footer />
 	</body>
 </html>
+
+<style>
+	.resource-grid {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+		margin-top: 1rem;
+	}
+
+	.resource-card {
+		border: 1px solid var(--border-color);
+		border-radius: 0.75rem;
+		padding: 1rem;
+		background: var(--surface-color);
+		box-shadow: 0 3px 10px rgba(var(--black), 0.08);
+	}
+
+	.resource-card h2 {
+		margin-top: 0;
+	}
+
+	.resource-cta {
+		display: inline-block;
+		background: var(--accent);
+		color: var(--accent-contrast);
+		text-decoration: none;
+		padding: 0.55rem 0.85rem;
+		border-radius: 0.5rem;
+		font-weight: 600;
+	}
+
+	.resource-cta:hover {
+		background: var(--accent-dark);
+	}
+</style>
