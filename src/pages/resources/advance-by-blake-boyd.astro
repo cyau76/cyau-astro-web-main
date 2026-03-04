@@ -10,10 +10,83 @@
 		/>
 		<title>Advance - Blake Boyd</title>
 		<link rel="stylesheet" href="/advance-by-blake-boyd/assets/index.css" />
+		<style>
+			:root {
+				color-scheme: light;
+			}
+
+			:root.dark {
+				color-scheme: dark;
+			}
+
+			#theme-toggle {
+				position: fixed;
+				top: 1rem;
+				right: 1rem;
+				z-index: 1000;
+				font: inherit;
+				line-height: 1;
+				padding: 0.5rem;
+				border-radius: 0.5rem;
+				border: 1px solid rgba(0, 0, 0, 0.2);
+				background: rgba(255, 255, 255, 0.9);
+				cursor: pointer;
+			}
+
+			:root.dark #theme-toggle {
+				border-color: rgba(255, 255, 255, 0.2);
+				background: rgba(18, 24, 39, 0.9);
+				color: #f5f7ff;
+			}
+		</style>
 	</head>
 	<body>
+		<button id="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
 		<noscript>You need to enable JavaScript to run this app.</noscript>
 		<div id="root"></div>
+		<script>
+			const root = document.documentElement;
+			const toggle = document.getElementById('theme-toggle');
+
+			const updateThemeIcon = () => {
+				const isDark =
+					root.classList.contains('dark') ||
+					(!root.classList.contains('light') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+				if (toggle) {
+					toggle.textContent = isDark ? '☀️' : '🌙';
+				}
+			};
+
+			const storedTheme = localStorage.getItem('theme');
+			if (storedTheme === 'dark') {
+				root.classList.add('dark');
+				root.classList.remove('light');
+			} else if (storedTheme === 'light') {
+				root.classList.add('light');
+				root.classList.remove('dark');
+			}
+
+			toggle?.addEventListener('click', () => {
+				const isDark =
+					root.classList.contains('dark') ||
+					(!root.classList.contains('light') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+				if (isDark) {
+					root.classList.remove('dark');
+					root.classList.add('light');
+					localStorage.setItem('theme', 'light');
+				} else {
+					root.classList.add('dark');
+					root.classList.remove('light');
+					localStorage.setItem('theme', 'dark');
+				}
+
+				updateThemeIcon();
+			});
+
+			updateThemeIcon();
+		</script>
 		<script type="module" src="/advance-by-blake-boyd/assets/index.js"></script>
 	</body>
 </html>
