@@ -3,36 +3,18 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
-const songs = [
+const resourceLinks = [
 	{
-		title: 'sea&land',
-		artist: 'RubberBand',
-		musicUrl: 'https://music.youtube.com/watch?v=Z4LUxwG8B9s',
-		mp3Path: '/audio/sea-land-RubberBand.mp3',
+		title: 'Advance by Blake Boyd',
+		description: 'Patch sheet, stage plot, and run-of-show app copied into this codebase.',
+		href: '/resources/advance-by-blake-boyd',
+		cta: 'Open Advance App',
 	},
 	{
-		title: 'Id-Do-Anything-For-Love',
-		artist: 'Meat Loaf',
-		musicUrl: 'https://music.youtube.com/watch?v=kOeu1QhrCZg',
-		mp3Path: '/audio/Id-Do-Anything-For-Love.mp3',
-	},
-	{
-		title: 'The-Robin-Hood-Overture',
-		artist: 'Chris de Burgh',
-		musicUrl: 'https://music.youtube.com/watch?v=CZKQPpS3NCk',
-		mp3Path: '/audio/The-Robin-Hood-Overture.mp3',
-	},
-	{
-		title: 'Legacy',
-		artist: 'Chris de Burgh',
-		musicUrl: 'https://music.youtube.com/watch?v=Q9elzD6YLAY',
-		mp3Path: '/audio/Legacy.mp3',
-	},
-	{
-		title: 'Never-Enough',
-		artist: 'The Greatest Showman Ensemble',
-		musicUrl: 'https://music.youtube.com/watch?v=U5XgLP6OFcU',
-		mp3Path: '/audio/Never-Enough.mp3',
+		title: 'Songs',
+		description: 'Audio resources with streaming links and downloadable MP3 files.',
+		href: '/resources/songs',
+		cta: 'Open Songs Page',
 	},
 ];
 ---
@@ -46,23 +28,15 @@ const songs = [
 		<Header />
 		<main>
 			<h1>Resources</h1>
-
-			<section>
-				<h2>Songs</h2>
-				{songs.map((song) => (
-					<article>
+			<section style="display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-top: 1rem;">
+				{resourceLinks.map((item) => (
+					<article style="border: 1px solid #d0d7de; border-radius: 12px; padding: 1rem; background: #f8fafc; box-shadow: 0 3px 10px rgba(0,0,0,0.06);">
+						<h2 style="margin-top: 0;">{item.title}</h2>
+						<p>{item.description}</p>
 						<p>
-							<strong>{song.title}</strong> by {song.artist}
-						</p>
-						<p>
-							<a href={song.musicUrl} target="_blank" rel="noopener noreferrer">Open on YouTube Music</a>
-						</p>
-						<audio controls preload="none">
-							<source src={song.mp3Path} type="audio/mpeg" />
-							Your browser does not support MP3 playback.
-						</audio>
-						<p>
-							<a href={song.mp3Path} download>Download MP3</a>
+							<a href={item.href} style="display: inline-block; background: #2563eb; color: #fff; text-decoration: none; padding: 0.55rem 0.85rem; border-radius: 8px; font-weight: 600;">
+								{item.cta}
+							</a>
 						</p>
 					</article>
 				))}

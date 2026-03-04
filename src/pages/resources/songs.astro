@@ -1,0 +1,69 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const songs = [
+	{
+		title: 'sea&land',
+		artist: 'RubberBand',
+		musicUrl: 'https://music.youtube.com/watch?v=Z4LUxwG8B9s',
+		mp3Path: '/audio/sea-land-RubberBand.mp3',
+	},
+	{
+		title: 'Id-Do-Anything-For-Love',
+		artist: 'Meat Loaf',
+		musicUrl: 'https://music.youtube.com/watch?v=kOeu1QhrCZg',
+		mp3Path: '/audio/Id-Do-Anything-For-Love.mp3',
+	},
+	{
+		title: 'The-Robin-Hood-Overture',
+		artist: 'Chris de Burgh',
+		musicUrl: 'https://music.youtube.com/watch?v=CZKQPpS3NCk',
+		mp3Path: '/audio/The-Robin-Hood-Overture.mp3',
+	},
+	{
+		title: 'Legacy',
+		artist: 'Chris de Burgh',
+		musicUrl: 'https://music.youtube.com/watch?v=Q9elzD6YLAY',
+		mp3Path: '/audio/Legacy.mp3',
+	},
+	{
+		title: 'Never-Enough',
+		artist: 'The Greatest Showman Ensemble',
+		musicUrl: 'https://music.youtube.com/watch?v=U5XgLP6OFcU',
+		mp3Path: '/audio/Never-Enough.mp3',
+	},
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="Songs" description="Music resources and downloads" />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Songs</h1>
+			{songs.map((song) => (
+				<article>
+					<p>
+						<strong>{song.title}</strong> by {song.artist}
+					</p>
+					<p>
+						<a href={song.musicUrl} target="_blank" rel="noopener noreferrer">Open on YouTube Music</a>
+					</p>
+					<audio controls preload="none">
+						<source src={song.mp3Path} type="audio/mpeg" />
+						Your browser does not support MP3 playback.
+					</audio>
+					<p>
+						<a href={song.mp3Path} download>Download MP3</a>
+					</p>
+				</article>
+			))}
+		</main>
+		<Footer />
+	</body>
+</html>
