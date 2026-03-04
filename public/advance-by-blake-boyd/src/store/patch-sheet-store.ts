@@ -16,11 +16,13 @@ interface PatchSheetState {
   setActiveTab: (tab: 'inputs' | 'outputs') => void;
 
   addInput: (afterIndex?: number) => void;
+  duplicateInput: (id: string) => void;
   updateInput: (id: string, patch: Partial<InputChannel>) => void;
   removeInput: (id: string) => void;
   reorderInputs: (fromIndex: number, toIndex: number) => void;
 
   addOutput: (afterIndex?: number) => void;
+  duplicateOutput: (id: string) => void;
   updateOutput: (id: string, patch: Partial<OutputChannel>) => void;
   removeOutput: (id: string) => void;
   reorderOutputs: (fromIndex: number, toIndex: number) => void;
@@ -65,6 +67,8 @@ const defaultMetadata: PatchSheetMetadata = {
   date: '',
   fohEngineer: '',
   monitorEngineer: '',
+  additionalPosition: '',
+  additionalName: '',
   notes: '',
 };
 
@@ -89,6 +93,16 @@ export const usePatchSheetStore = create<PatchSheetState>()(
         } else {
           inputs.push(newRow);
         }
+        set({ inputs });
+      },
+
+      duplicateInput: (id) => {
+        const inputs = [...get().inputs];
+        const sourceIndex = inputs.findIndex(ch => ch.id === id);
+        if (sourceIndex === -1) return;
+        const source = inputs[sourceIndex];
+        const duplicate: InputChannel = { ...source, id: createId() };
+        inputs.splice(sourceIndex + 1, 0, duplicate);
         set({ inputs });
       },
 
@@ -119,6 +133,16 @@ export const usePatchSheetStore = create<PatchSheetState>()(
         set({ outputs });
       },
 
+      duplicateOutput: (id) => {
+        const outputs = [...get().outputs];
+        const sourceIndex = outputs.findIndex(ch => ch.id === id);
+        if (sourceIndex === -1) return;
+        const source = outputs[sourceIndex];
+        const duplicate: OutputChannel = { ...source, id: createId() };
+        outputs.splice(sourceIndex + 1, 0, duplicate);
+        set({ outputs });
+      },
+
       updateOutput: (id, patch) => {
         set({ outputs: get().outputs.map(ch => ch.id === id ? { ...ch, ...patch } : ch) });
       },
@@ -139,7 +163,10 @@ export const usePatchSheetStore = create<PatchSheetState>()(
         if (data) {
           set({
             documentId: id,
-            metadata: data.metadata,
+            metadata: {
+              ...defaultMetadata,
+              ...data.metadata,
+            },
             inputs: data.inputs,
             outputs: data.outputs,
             activeTab: 'inputs',
@@ -174,7 +201,10 @@ export const usePatchSheetStore = create<PatchSheetState>()(
       importDocument: (doc, id) => {
         set({
           documentId: id,
-          metadata: doc.metadata,
+          metadata: {
+            ...defaultMetadata,
+            ...doc.metadata,
+          },
           inputs: doc.inputs,
           outputs: doc.outputs,
           activeTab: 'inputs',

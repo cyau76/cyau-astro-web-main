@@ -15,6 +15,7 @@ export function OutputTable() {
   const outputs = usePatchSheetStore(s => s.outputs);
   const updateOutput = usePatchSheetStore(s => s.updateOutput);
   const removeOutput = usePatchSheetStore(s => s.removeOutput);
+  const duplicateOutput = usePatchSheetStore(s => s.duplicateOutput);
   const addOutput = usePatchSheetStore(s => s.addOutput);
   const reorderOutputs = usePatchSheetStore(s => s.reorderOutputs);
 
@@ -68,7 +69,7 @@ export function OutputTable() {
               <th>Dest Type</th>
               <th>Dest Gear</th>
               <th>Notes</th>
-              <th style={{ width: 40 }} />
+              <th style={{ width: 72 }} />
             </tr>
           </thead>
           <tbody>
@@ -105,16 +106,28 @@ export function OutputTable() {
                   <EditableCell value={ch.notes} onChange={(v) => updateOutput(ch.id, { notes: v })} placeholder="Notes" />
                 </td>
                 <td>
-                  <button
-                    className="advc-btn advc-btn--sm advc-btn--icon advc-btn--danger"
-                    onClick={() => removeOutput(ch.id)}
-                    title="Delete row"
-                  >
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <line x1="18" y1="6" x2="6" y2="18" />
-                      <line x1="6" y1="6" x2="18" y2="18" />
-                    </svg>
-                  </button>
+                  <div style={{ display: 'flex', gap: 4 }}>
+                    <button
+                      className="advc-btn advc-btn--sm advc-btn--icon"
+                      onClick={() => duplicateOutput(ch.id)}
+                      title="Duplicate row"
+                    >
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                      </svg>
+                    </button>
+                    <button
+                      className="advc-btn advc-btn--sm advc-btn--icon advc-btn--danger"
+                      onClick={() => removeOutput(ch.id)}
+                      title="Delete row"
+                    >
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                      </svg>
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}
