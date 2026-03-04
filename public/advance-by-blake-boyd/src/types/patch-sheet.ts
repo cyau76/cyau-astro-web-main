@@ -3,11 +3,13 @@ export interface PatchSheetMetadata {
   date: string;
   fohEngineer: string;
   monitorEngineer: string;
+  additionalPosition: string;
+  additionalName: string;
   notes: string;
 }
 
-export type MicType = 'dynamic' | 'condenser' | 'di' | 'ribbon' | 'wireless' | '';
-export type ConnectionType = 'analog-snake' | 'dante' | 'direct' | '';
+export type MicType = 'dynamic' | 'condenser' | 'di' | 'ribbon' | 'wireless' | 'line' | '';
+export type ConnectionType = 'analog-snake' | 'dante' | 'direct' | 'stage-box-1' | 'stage-box-2' | '';
 
 export interface InputChannel {
   id: string;

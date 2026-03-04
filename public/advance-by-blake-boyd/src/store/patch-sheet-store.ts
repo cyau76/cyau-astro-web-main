@@ -18,11 +18,13 @@ interface PatchSheetState {
   addInput: (afterIndex?: number) => void;
   updateInput: (id: string, patch: Partial<InputChannel>) => void;
   removeInput: (id: string) => void;
+  duplicateInput: (id: string) => void;
   reorderInputs: (fromIndex: number, toIndex: number) => void;
 
   addOutput: (afterIndex?: number) => void;
   updateOutput: (id: string, patch: Partial<OutputChannel>) => void;
   removeOutput: (id: string) => void;
+  duplicateOutput: (id: string) => void;
   reorderOutputs: (fromIndex: number, toIndex: number) => void;
 
   loadDocument: (id: string) => void;
@@ -65,8 +67,14 @@ const defaultMetadata: PatchSheetMetadata = {
   date: '',
   fohEngineer: '',
   monitorEngineer: '',
+  additionalPosition: '',
+  additionalName: '',
   notes: '',
 };
+
+function normalizeMetadata(metadata: Partial<PatchSheetMetadata> | undefined): PatchSheetMetadata {
+  return { ...defaultMetadata, ...metadata };
+}
 
 export const usePatchSheetStore = create<PatchSheetState>()(
   temporal(
@@ -100,6 +108,16 @@ export const usePatchSheetStore = create<PatchSheetState>()(
         set({ inputs: get().inputs.filter(ch => ch.id !== id) });
       },
 
+      duplicateInput: (id) => {
+        const inputs = [...get().inputs];
+        const index = inputs.findIndex(ch => ch.id === id);
+        if (index === -1) return;
+        const source = inputs[index];
+        const duplicate: InputChannel = { ...source, id: createId() };
+        inputs.splice(index + 1, 0, duplicate);
+        set({ inputs });
+      },
+
       reorderInputs: (fromIndex, toIndex) => {
         const inputs = [...get().inputs];
         const [moved] = inputs.splice(fromIndex, 1);
@@ -127,6 +145,16 @@ export const usePatchSheetStore = create<PatchSheetState>()(
         set({ outputs: get().outputs.filter(ch => ch.id !== id) });
       },
 
+      duplicateOutput: (id) => {
+        const outputs = [...get().outputs];
+        const index = outputs.findIndex(ch => ch.id === id);
+        if (index === -1) return;
+        const source = outputs[index];
+        const duplicate: OutputChannel = { ...source, id: createId() };
+        outputs.splice(index + 1, 0, duplicate);
+        set({ outputs });
+      },
+
       reorderOutputs: (fromIndex, toIndex) => {
         const outputs = [...get().outputs];
         const [moved] = outputs.splice(fromIndex, 1);
@@ -139,7 +167,7 @@ export const usePatchSheetStore = create<PatchSheetState>()(
         if (data) {
           set({
             documentId: id,
-            metadata: data.metadata,
+            metadata: normalizeMetadata(data.metadata),
             inputs: data.inputs,
             outputs: data.outputs,
             activeTab: 'inputs',
@@ -174,7 +202,7 @@ export const usePatchSheetStore = create<PatchSheetState>()(
       importDocument: (doc, id) => {
         set({
           documentId: id,
-          metadata: doc.metadata,
+          metadata: normalizeMetadata(doc.metadata),
           inputs: doc.inputs,
           outputs: doc.outputs,
           activeTab: 'inputs',

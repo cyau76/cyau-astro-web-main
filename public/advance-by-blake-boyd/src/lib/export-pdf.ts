@@ -4,6 +4,23 @@ import html2canvas from 'html2canvas';
 import type { PatchSheetDoc } from '@/types/patch-sheet';
 import type { RunOfShowDoc } from '@/types/run-of-show';
 
+function addPdfFooter(pdf: jsPDF): void {
+  const pageCount = pdf.getNumberOfPages();
+  const pageHeight = pdf.internal.pageSize.getHeight();
+  const pageWidth = pdf.internal.pageSize.getWidth();
+  const exportedAt = `Exported: ${new Date().toLocaleString()}`;
+  const copyright = '© 2026 Au Chun Yin. All rights reserved.';
+
+  pdf.setFontSize(8);
+  pdf.setTextColor(120);
+  for (let page = 1; page <= pageCount; page += 1) {
+    pdf.setPage(page);
+    pdf.text(exportedAt, 14, pageHeight - 6);
+    pdf.text(copyright, pageWidth - 14, pageHeight - 6, { align: 'right' });
+  }
+  pdf.setTextColor(0);
+}
+
 export function exportPatchSheetPdf(doc: PatchSheetDoc, name: string): void {
   const pdf = new jsPDF('landscape', 'mm', 'a4');
 
@@ -17,6 +34,7 @@ export function exportPatchSheetPdf(doc: PatchSheetDoc, name: string): void {
     meta.date && `Date: ${meta.date}`,
     meta.fohEngineer && `FOH: ${meta.fohEngineer}`,
     meta.monitorEngineer && `Monitor: ${meta.monitorEngineer}`,
+    (meta.additionalPosition || meta.additionalName) && `${meta.additionalPosition || 'Position'}: ${meta.additionalName || ''}`.trim(),
   ].filter(Boolean);
   if (metaLines.length) {
     pdf.text(metaLines.join('  |  '), 14, 22);
@@ -69,6 +87,7 @@ export function exportPatchSheetPdf(doc: PatchSheetDoc, name: string): void {
     });
   }
 
+  addPdfFooter(pdf);
   pdf.save(`${name}.pdf`);
 }
 
@@ -99,6 +118,7 @@ export async function exportStagePlotPdf(canvasElement: HTMLElement, name: strin
   const x = (pageWidth - drawWidth) / 2;
 
   pdf.addImage(imgData, 'PNG', x, 22, drawWidth, drawHeight);
+  addPdfFooter(pdf);
   pdf.save(`${name}.pdf`);
 }
 
@@ -135,5 +155,6 @@ export function exportRunOfShowPdf(doc: RunOfShowDoc, name: string): void {
     headStyles: { fillColor: [245, 158, 11] },
   });
 
+  addPdfFooter(pdf);
   pdf.save(`${name}.pdf`);
 }
